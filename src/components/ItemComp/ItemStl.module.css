@@ -1,0 +1,15 @@
+.item_content{
+    display: flex;
+    flex-direction: column;
+}
+
+.item_content_item_1{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    flex-direction: row;
+}
+
+.item_content_item_1_in_item_1{
+    padding: .5em;
+}
