@@ -45,3 +45,11 @@ export function sortByItem(items, category) {
     }
 
 }
+
+export function addingItem(items,obj){
+    
+  
+    items.push(obj)
+
+    return items
+}

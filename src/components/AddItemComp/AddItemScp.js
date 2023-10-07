@@ -13,9 +13,15 @@ import { FaCalendarDays } from "react-icons/fa6";
 
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
-const ArrItemComp = ({ }) => {
+const ArrItemComp = ({ addingItemFunc }) => {
 
     const [value, onChange] = useState(new Date());
+
+    const [str,setStr] = useState('')
+
+    function strFunc(e){
+        setStr(e.target.value)
+    }
 
 
     return (
@@ -23,6 +29,7 @@ const ArrItemComp = ({ }) => {
             <Form.Control
                 placeholder="Recipient's username"
                 aria-label="Recipient's username with two button addons"
+                onChange={(e) => strFunc(e)}
             />
             <Button>
                 <NavDropdown title={<FaCalendarDays />} id="basic-nav-dropdown">
@@ -32,7 +39,7 @@ const ArrItemComp = ({ }) => {
                 </NavDropdown>
             </Button>
 
-            <Button variant="outline-secondary">ADD</Button>
+            <Button variant="outline-secondary" onClick={() => addingItemFunc(str,new Date().toLocaleDateString('en-CA'),new Date().getFullYear())}>ADD</Button>
         </InputGroup>
     )
 }
