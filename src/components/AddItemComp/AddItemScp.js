@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 
 import styles from './AddItemStl.module.css'
 
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
 
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -12,6 +14,10 @@ import { FaCalendarDays } from "react-icons/fa6";
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
 const ArrItemComp = ({ }) => {
+
+    const [value, onChange] = useState(new Date());
+
+
     return (
         <InputGroup className='mb-5'>
             <Form.Control
@@ -20,7 +26,9 @@ const ArrItemComp = ({ }) => {
             />
             <Button>
                 <NavDropdown title={<FaCalendarDays />} id="basic-nav-dropdown">
-                    <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+                    <NavDropdown.Item href="#action/3.1">
+                        <Calendar onChange={onChange} value={value} />
+                    </NavDropdown.Item>
                 </NavDropdown>
             </Button>
 
