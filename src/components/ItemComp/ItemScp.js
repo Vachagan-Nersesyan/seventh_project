@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 
 import styles from './ItemStl.module.css'
@@ -11,7 +11,27 @@ import Form from 'react-bootstrap/Form';
 import { FaPencil, FaBoxArchive } from "react-icons/fa6";
 
 
-const ItemComp = ({ itemsArr }) => {
+const ItemComp = ({ itemsArr, deleteItem, changeItemText }) => {
+
+    const [tpitm, setTpitm] = useState(null)
+
+    const [str, setStr] = useState('')
+
+    console.log(str)
+
+    const changeItmType = (id) => {
+        if(id === tpitm){
+            setTpitm(null)
+            changeItemText(itemsArr,id,str)
+
+        }else{
+            
+            setTpitm(id)
+            
+
+        }
+
+    }
 
     const itemDate = itemsArr.map((val) => {
         return (
@@ -23,16 +43,24 @@ const ItemComp = ({ itemsArr }) => {
                             label="1"
                             name="group1"
                         />
-                        <Navbar.Brand href="#home">{val.text}</Navbar.Brand>
+                        {
+                            val.id === tpitm ?
+                            <div>
+                                <input type='text' onChange={(e) => setStr(e.target.value)}/>
+                            </div>
+                            
+                            : <Navbar.Brand href="#home">{val.text}</Navbar.Brand> 
+
+                        }
                         <Navbar.Toggle />
                         <Navbar.Collapse className="justify-content-end">
                             <div className={styles.item_content}>
                                 <div className={styles.item_content_item_1}>
                                     <div className={styles.item_content_item_1_in_item_1}>
-                                        <FaPencil />
+                                        <FaPencil onClick={() => changeItmType(val.id)} />
                                     </div>
                                     <div className={styles.item_content_item_1_in_item_1}>
-                                        <FaBoxArchive />
+                                        <FaBoxArchive onClick={() => deleteItem(val.id)} />
                                     </div>
                                 </div>
                                 <div className={styles.item_content_item_2}>

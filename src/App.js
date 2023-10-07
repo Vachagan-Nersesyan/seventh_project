@@ -6,6 +6,9 @@ import ArrItemComp from './components/AddItemComp'
 import FilterComp from './components/FilterComp'
 import ItemComp from './components/ItemComp'
 
+import { handleSearch,deleteSearch } from './utils/helperScp'
+import { useState } from 'react';
+
 function App() {
 
   const itemsArr = [
@@ -26,6 +29,17 @@ function App() {
     },
   ]
 
+  const [arr,setArr] = useState(itemsArr)
+
+  const deleteItem = (id) => {
+    setArr(deleteSearch(id, itemsArr))
+  }
+
+  const changeItemText = (itemsArr,id,str) => {
+    
+    setArr(handleSearch(itemsArr,id,str))
+  }
+
 
   return (
     <div className="App">
@@ -33,7 +47,7 @@ function App() {
         <HeaderComp />
         <ArrItemComp />
         <FilterComp />
-        <ItemComp itemsArr={itemsArr} />
+        <ItemComp itemsArr={arr} changeItemText={changeItemText} deleteItem={deleteItem} />
       </div>
     </div>
   );
