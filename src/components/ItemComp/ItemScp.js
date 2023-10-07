@@ -11,13 +11,12 @@ import Form from 'react-bootstrap/Form';
 import { FaPencil, FaBoxArchive } from "react-icons/fa6";
 
 
-const ItemComp = ({ itemsArr, deleteItem, changeItemText }) => {
+const ItemComp = ({isImportantFunc,isDoneFunc, itemsArr, deleteItem, changeItemText }) => {
 
     const [tpitm, setTpitm] = useState(null)
 
     const [str, setStr] = useState('')
 
-    console.log(str)
 
     const changeItmType = (id) => {
         if(id === tpitm){
@@ -38,11 +37,21 @@ const ItemComp = ({ itemsArr, deleteItem, changeItemText }) => {
             <div key={val.id}>
                 <Navbar className="bg-body-tertiary">
                     <Container>
+                        isDone
                         <Form.Check
                             inline
                             label="1"
                             name="group1"
+                            onClick={() => isDoneFunc(val.id)}
                         />
+                        isImportant
+                        <Form.Check
+                            inline
+                            label="1"
+                            name="group1"
+                            onClick={() => isImportantFunc(val.id)}
+                        />
+                        
                         {
                             val.id === tpitm ?
                             <div>

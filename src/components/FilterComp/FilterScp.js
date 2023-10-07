@@ -11,14 +11,14 @@ import FilterItemComp from './FilterItemComp/FilterItemScp'
 import FilterSecItemComp from './FIlterItemSecComp/FilterItemSecScp'
 
 
-const FilterComp = ({ }) => {
+const FilterComp = ({ sortArrFunc, sortByDateFunc }) => {
     return (
         <div className={styles.filter_content_container}>
             <div className={styles.filter_content}>
                 <InputGroup>
                     <div className={styles.filter_content_overlay}>
-                        <FilterItemComp />
-                        <FilterSecItemComp />
+                        <FilterItemComp sortArrFunc={sortArrFunc} />
+                        <FilterSecItemComp sortByDateFunc={sortByDateFunc} />
                         <div className={styles.first_item}>
                             <FaArrowDownWideShort />
                         </div>
